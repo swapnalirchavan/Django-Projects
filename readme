@@ -1,0 +1,39 @@
+1)django-admin startproject templateProj
+2)cd templateProj
+3)python manage.py startapp demoapp
+4)register demoapp
+settings.py---
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'demoapp',
+]
+
+4)create templates dir in main project
+5) create dir same as app name in templates dir
+6)create html files related to app within demoapp dir
+7) calculate path
+settings.py---
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR=Path.joinpath(BASE_DIR,'templates')
+8)write business logic in views
+views.py---
+from django.shortcuts import render
+# Create your views here.
+def wish(request):
+    return render(request,'demoapp/wish.html')
+9)create url related with application views
+urls.py---
+from django.contrib import admin
+from django.urls import path
+from demoapp import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wish/',views.wish)
+]
+10)python manage.py runserver
+
